@@ -10,7 +10,8 @@ const Body = styled.div`
   flex-direction:column;
   min-height: 100vh;
   &.crazy{
-    background: #43BBE1;
+    background-color: #43BBE1;
+    transition: background-color 500ms linear;
     color: white;
   }
 `
@@ -164,10 +165,10 @@ function App () {
                   ? <button className='btn draw-border'>Download for macOS</button>
                   : <div>
                     <p>We currently don't have support for your OS <span role='img'>😥</span></p>
-                    </div>}
+                  </div>}
               </ButtonContainer>
             </Main>
-          </>}
+            </>}
         <Footer>
           <p>with <span style={{ color: 'red' }}>&lt;3</span> from Uppsala</p>
         </Footer>
