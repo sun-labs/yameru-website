@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import Yameru from './yameru.png';
+import React, { useState, useEffect } from 'react'
+import Yameru from './yameru.png'
 import YameruGif from './Yameru.gif'
-import styled from 'styled-components';
+import styled from 'styled-components'
 import './app.scss'
 import ScreenShots from './Screenshots'
 
@@ -82,37 +82,29 @@ const ButtonContainer = styled.div`
   padding-top: 2em;
 `
 
-const Button = styled.button`
-  min-width: 300px;
-  border: 12px solid #FF0000;
-  background: transparent;
-  padding: 1em 3em;
-  `
-
-function getOS() {
-  var userAgent = window.navigator.userAgent,
-      platform = window.navigator.platform,
-      macosPlatforms = ['Macintosh', 'MacIntel', 'MacPPC', 'Mac68K'],
-      windowsPlatforms = ['Win32', 'Win64', 'Windows', 'WinCE'],
-      iosPlatforms = ['iPhone', 'iPad', 'iPod'],
-      os = null;
+function getOS () {
+  var userAgent = window.navigator.userAgent
+  var platform = window.navigator.platform
+  var macosPlatforms = ['Macintosh', 'MacIntel', 'MacPPC', 'Mac68K']
+  var windowsPlatforms = ['Win32', 'Win64', 'Windows', 'WinCE']
+  var iosPlatforms = ['iPhone', 'iPad', 'iPod']
+  var os = null
 
   if (macosPlatforms.indexOf(platform) !== -1) {
-    os = 'macOS';
+    os = 'macOS'
   } else if (iosPlatforms.indexOf(platform) !== -1) {
-    os = 'iOS';
+    os = 'iOS'
   } else if (windowsPlatforms.indexOf(platform) !== -1) {
-    os = 'Windows';
+    os = 'Windows'
   } else if (/Android/.test(userAgent)) {
-    os = 'Android';
+    os = 'Android'
   } else if (!os && /Linux/.test(platform)) {
-    os = 'Linux';
+    os = 'Linux'
   }
-  return os;
+  return os
 }
 
-
-function App() {
+function App () {
   const [hover, setHover] = useState(false)
   const [os, setOS] = useState(false)
   const [modal, setModal] = useState(false)
@@ -125,64 +117,63 @@ function App() {
   useEffect(() => {
     // Update the document title using the browser API
     setOS(getOS())
-  }, [setOS]);
+  }, [setOS])
 
   return (
-    <div className="App">
+    <div className='App'>
       <Body className={hover && 'crazy'}>
-      { modal
-      ? <ScreenShots setModal={setIsModal} />
-      : <>
-      <header className="App-header">
-        <LinkWrap>
-        <LinkContainer>
-          <Link
-          href='www.sunlabs.se'
-          target="_blank"
-          rel="noopener noreferrer"
-          >source code</Link>
-          </LinkContainer>
-          <LinkContainer>
-          <Link
-            onClick={() => setIsModal(true)}
-          >screenshots</Link>
-          </LinkContainer>
-        </LinkWrap>
-      </header>
-      <Main>
-        <LogoContainer
-        onMouseEnter={() => setIsShown(true)}
-        onMouseLeave={() => setIsShown(false)}
-        >
-          {hover
-          ? <img className='fade-in' alt='logo' src={YameruGif} />
-          : <img className='fade-in' alt='logo' src={Yameru} />
-          }
-        </LogoContainer>
-        <Title>Yameru <span style={{color: 'red'}}>·</span> やめる</Title>
-        <Subtitle>Protect your computer from theft at public events</Subtitle>
-        <List>
-          <li>Alarm when disconnected from power source</li>
-          <li>Disable USB inputs</li>
-          <li>Disable shutdown</li>
-        </List>
-        <ButtonContainer>
-          { os === 'macOS'
-          ? <button className="btn draw-border">Download for macOS</button>
-          : <div>
-            <p>We currently don't have support for your OS 😥</p>
-            </div>
-          }
-        </ButtonContainer>
-      </Main>
-      </>
-      }
-      <Footer>
-      <p>with <span style={{color: 'red'}}>&lt;3</span> from Uppsala</p>
-      </Footer>
+        {modal
+          ? <ScreenShots setModal={setIsModal} />
+          : <>
+            <header className='App-header'>
+              <LinkWrap>
+                <LinkContainer>
+                  <Link
+                    href='www.sunlabs.se'
+                    target='_blank'
+                    rel='noopener noreferrer'
+                  >source code
+                  </Link>
+                </LinkContainer>
+                <LinkContainer>
+                  <Link
+                    onClick={() => setIsModal(true)}
+                  >screenshots
+                  </Link>
+                </LinkContainer>
+              </LinkWrap>
+            </header>
+            <Main>
+              <LogoContainer
+                onMouseEnter={() => setIsShown(true)}
+                onMouseLeave={() => setIsShown(false)}
+              >
+                {hover
+                  ? <img className='fade-in' alt='logo' src={YameruGif} />
+                  : <img className='fade-in' alt='logo' src={Yameru} />}
+              </LogoContainer>
+              <Title>Yameru <span style={{ color: 'red' }}>·</span> やめる</Title>
+              <Subtitle>Protect your computer from theft at public events</Subtitle>
+              <List>
+                <li>Alarm when disconnected from power source</li>
+                <li>Disable USB inputs</li>
+                <li>Disable shutdown</li>
+              </List>
+              <ButtonContainer>
+                {os === 'macOS'
+                  ? <button className='btn draw-border'>Download for macOS</button>
+                  : <div>
+                    <p>We currently don't have support for your OS <span role='img'>😥</span></p>
+                    </div>}
+              </ButtonContainer>
+            </Main>
+          </>}
+        <Footer>
+          <p>with <span style={{ color: 'red' }}>&lt;3</span> from Uppsala</p>
+        </Footer>
       </Body>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
