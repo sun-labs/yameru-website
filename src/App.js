@@ -125,50 +125,54 @@ function App () {
       <Body className={hover && 'crazy'}>
         {modal
           ? <ScreenShots setModal={setIsModal} />
-          : <>
-            <header className='App-header'>
-              <LinkWrap>
-                <LinkContainer>
-                  <Link
-                    href='https://github.com/sun-labs/sun-Yameru'
-                    target='_blank'
-                    rel='noopener noreferrer'
-                  >source code
-                  </Link>
-                </LinkContainer>
-                <LinkContainer>
-                  <Link
-                    onClick={() => setIsModal(true)}
-                  >screenshots
-                  </Link>
-                </LinkContainer>
-              </LinkWrap>
-            </header>
-            <Main>
-              <LogoContainer
-                onMouseEnter={() => setIsShown(true)}
-                onMouseLeave={() => setIsShown(false)}
-              >
-                {hover
-                  ? <img className='fade-in' alt='logo' src={YameruGif} />
-                  : <img className='fade-in' alt='logo' src={Yameru} />}
-              </LogoContainer>
-              <Title>Yameru <span style={{ color: 'red' }}>·</span> やめる</Title>
-              <Subtitle>Protect your computer from theft at public events</Subtitle>
-              <List>
-                <li>Alarm when disconnected from power source</li>
-                <li>Disable USB inputs</li>
-                <li>Disable shutdown</li>
-              </List>
-              <ButtonContainer>
-                {os === 'macOS'
-                  ? <a href='/Download/Yameru.zip'><button className='btn draw-border'>Download for macOS</button></a>
-                  : <div>
-                    <p>We currently don't have support for your OS <span role='img'>😥</span></p>
-                  </div>}
-              </ButtonContainer>
-            </Main>
-            </>}
+          : (
+            <>
+              <header className='App-header'>
+                <LinkWrap>
+                  <LinkContainer>
+                    <Link
+                      href='https://github.com/sun-labs/sun-Yameru'
+                      target='_blank'
+                      rel='noopener noreferrer'
+                    >source code
+                    </Link>
+                  </LinkContainer>
+                  <LinkContainer>
+                    <Link
+                      onClick={() => setIsModal(true)}
+                    >screenshots
+                    </Link>
+                  </LinkContainer>
+                </LinkWrap>
+              </header>
+              <Main>
+                <LogoContainer
+                  onMouseEnter={() => setIsShown(true)}
+                  onMouseLeave={() => setIsShown(false)}
+                >
+                  {hover
+                    ? <img className='fade-in' alt='logo' src={YameruGif} />
+                    : <img className='fade-in' alt='logo' src={Yameru} />}
+                </LogoContainer>
+                <Title>Yameru <span style={{ color: 'red' }}>·</span> やめる</Title>
+                <Subtitle>Protect your computer from theft at public events</Subtitle>
+                <List>
+                  <li>Protection from Rubber Ducky and other <a href='https://shop.hak5.org/collections/physical-access' target='_blank' rel='noopener noreferrer'>hotplug attacks</a></li>
+                  <li>Alarm when disconnected from power source</li>
+                  <li>Prevents computer from sleeping</li>
+                </List>
+                <ButtonContainer>
+                  {os === 'macOS'
+                    ? <a href='/Download/Yameru.zip'><button className='btn draw-border'>Download for macOS</button></a>
+                    : (
+                      <div>
+                        <p>We currently don't have support for your OS <span role='img'>😥</span></p>
+                      </div>
+                    )}
+                </ButtonContainer>
+              </Main>
+            </>
+          )}
         <Footer>
           <p>with <span style={{ color: 'red' }}>&lt;3</span> from Uppsala</p>
         </Footer>
