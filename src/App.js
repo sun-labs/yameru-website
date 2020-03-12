@@ -130,7 +130,7 @@ function App () {
               <LinkWrap>
                 <LinkContainer>
                   <Link
-                    href='www.sunlabs.se'
+                    href='https://github.com/sun-labs/sun-Yameru/settings'
                     target='_blank'
                     rel='noopener noreferrer'
                   >source code
@@ -162,7 +162,7 @@ function App () {
               </List>
               <ButtonContainer>
                 {os === 'macOS'
-                  ? <button className='btn draw-border'>Download for macOS</button>
+                  ? <a href='/Download/Yameru.zip'><button className='btn draw-border'>Download for macOS</button></a>
                   : <div>
                     <p>We currently don't have support for your OS <span role='img'>😥</span></p>
                   </div>}

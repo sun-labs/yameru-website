@@ -4,6 +4,15 @@ import Yameru from './yameru.png'
 
 import './app.scss'
 
+import Screenshot1 from './img/screen1.png'
+import Screenshot2 from './img/screen2.png'
+import Screenshot3 from './img/screen3.png'
+import Screenshot4 from './img/screen4.png'
+import Screenshot5 from './img/screen5.png'
+import Screenshot6 from './img/screen6.png'
+import Screenshot7 from './img/screen7.png'
+import Screenshot8 from './img/screen8.png'
+
 const Header = styled.div`
   display: flex;
   justify-content: space-between;
@@ -57,6 +66,24 @@ const Subtitle = styled.h3`
   }
 `
 
+const ImgWrap = styled.div`
+  display: flex;
+  flex-direction: column;
+`
+
+const ImgContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+`
+
+const ScreenShot = styled.img`
+  width: 600px;
+  height: auto;
+  max-width: 100%;
+`
+
 function Screenshots (props) {
   return (
     <div>
@@ -79,6 +106,24 @@ function Screenshots (props) {
         <Subtitle>
           Gigapixels of security
         </Subtitle>
+        <ImgWrap>
+          <ImgContainer>
+            <ScreenShot src={Screenshot1} />
+            <ScreenShot src={Screenshot2} />
+          </ImgContainer>
+          <ImgContainer>
+            <ScreenShot src={Screenshot3} />
+            <ScreenShot src={Screenshot6} />
+          </ImgContainer>
+          <ImgContainer>
+            <ScreenShot src={Screenshot5} />
+            <ScreenShot src={Screenshot4} />
+          </ImgContainer>
+          <ImgContainer>
+            <ScreenShot src={Screenshot8} />
+            <ScreenShot src={Screenshot7} />
+          </ImgContainer>
+        </ImgWrap>
       </Main>
     </div>
   )
