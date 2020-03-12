@@ -13,6 +13,9 @@ const Body = styled.div`
     background-color: #43BBE1;
     transition: background-color 500ms linear;
     color: white;
+    & a {
+      color: red;
+    }
   }
 `
 
@@ -69,6 +72,9 @@ const Title = styled.h1`
 const Subtitle = styled.h3`
   color: #5A5A5A;
   text-align: center;
+  font-weight: normal;
+  color: ${props => props.hover ? 'white' : 'gray'};
+  margin-top: 0;
   @media (max-width: 767px) {
   font-size: 0.8em;
   }
@@ -155,11 +161,12 @@ function App () {
                     : <img className='fade-in' alt='logo' src={Yameru} />}
                 </LogoContainer>
                 <Title>Yameru <span style={{ color: 'red' }}>·</span> やめる</Title>
-                <Subtitle>Protect your computer from theft at public events</Subtitle>
+                <Subtitle hover={hover}>Protect your computer from attacks and theft at public events</Subtitle>
                 <List>
                   <li>Protection from Rubber Ducky and other <a href='https://shop.hak5.org/collections/physical-access' target='_blank' rel='noopener noreferrer'>hotplug attacks</a></li>
-                  <li>Alarm when disconnected from power source</li>
-                  <li>Prevents computer from sleeping</li>
+                  <li>Alarm when disconnected from power source 🔊</li>
+                  <li>Lockdown when intrusion is detected 🔒</li>
+                  <li>Prevents computer from sleeping 😴</li>
                 </List>
                 <ButtonContainer>
                   {os === 'macOS'
