@@ -1,9 +1,15 @@
 import React, { useState, useEffect } from 'react'
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route
+} from 'react-router-dom'
 import Yameru from './yameru.png'
 import YameruGif from './Yameru.gif'
 import styled from 'styled-components'
 import './app.scss'
 import ScreenShots from './Screenshots'
+import Privacy from './Privacy'
 
 const Body = styled.div`
   display:flex;
@@ -111,10 +117,26 @@ function getOS () {
   return os
 }
 
-function App () {
+export default function App () {
+  return (
+    <Router>
+      <Switch>
+        <Route path='/privacy'>
+          <Home />
+        </Route>
+        <Route path='*'>
+          <Home />
+        </Route>
+      </Switch>
+    </Router>
+  )
+}
+
+function Home () {
   const [hover, setHover] = useState(false)
   const [os, setOS] = useState(false)
   const [modal, setModal] = useState(false)
+  const [privacy, setPrivacy] = useState(false)
   const setIsShown = (state) => {
     setHover(state)
   }
@@ -124,62 +146,75 @@ function App () {
   useEffect(() => {
     // Update the document title using the browser API
     setOS(getOS())
+    setPrivacy(getPrivacy())
   }, [setOS])
+
+  const getPrivacy = () => {
+    if (window.location.pathname &&
+      window.location.pathname.includes('privacy')) {
+      return true
+    } else {
+      return false
+    }
+  }
 
   return (
     <div className='App'>
       <Body className={hover && 'crazy'}>
         {modal
           ? <ScreenShots setModal={setIsModal} />
-          : (
-            <>
-              <header className='App-header'>
-                <LinkWrap>
-                  <LinkContainer>
-                    <Link
-                      href='https://github.com/sun-labs/sun-Yameru'
-                      target='_blank'
-                      rel='noopener noreferrer'
-                    >source code
-                    </Link>
-                  </LinkContainer>
-                  <LinkContainer>
-                    <Link
-                      onClick={() => setIsModal(true)}
-                    >screenshots
-                    </Link>
-                  </LinkContainer>
-                </LinkWrap>
-              </header>
-              <Main>
-                <LogoContainer
-                  onMouseEnter={() => setIsShown(true)}
-                  onMouseLeave={() => setIsShown(false)}
-                >
-                  {hover
-                    ? <img className='fade-in' alt='logo' src={YameruGif} />
-                    : <img className='fade-in' alt='logo' src={Yameru} />}
-                </LogoContainer>
-                <Title>Yameru <span style={{ color: 'red' }}>·</span> やめる</Title>
-                <Subtitle hover={hover}>Protect your computer from attacks and theft at public events</Subtitle>
-                <List>
-                  <li>Protection from Rubber Ducky and other <a href='https://shop.hak5.org/collections/physical-access' target='_blank' rel='noopener noreferrer'>hotplug attacks</a></li>
-                  <li>Alarm when disconnected from power source 🔊</li>
-                  <li>Lockdown when intrusion is detected 🔒</li>
-                  <li>Prevents computer from sleeping 😴</li>
-                </List>
-                <ButtonContainer>
-                  {os === 'macOS'
-                    ? <a href='/Download/Yameru.zip'><button className='btn draw-border'>Download for macOS</button></a>
-                    : (
-                      <div>
-                        <p>We currently don't have support for your OS <span role='img'>😥</span></p>
-                      </div>
-                    )}
-                </ButtonContainer>
-              </Main>
-            </>
-          )}
+          : <>
+            {privacy
+              ? <Privacy setModal={setPrivacy} />
+              : <>
+                <header className='App-header'>
+                  <LinkWrap>
+                    <LinkContainer>
+                      <Link
+                        href='https://github.com/sun-labs/sun-Yameru'
+                        target='_blank'
+                        rel='noopener noreferrer'
+                      >source code
+                      </Link>
+                    </LinkContainer>
+                    <LinkContainer>
+                      <Link
+                        onClick={() => setIsModal(true)}
+                      >screenshots
+                      </Link>
+                    </LinkContainer>
+                  </LinkWrap>
+                </header>
+                <Main>
+                  <LogoContainer
+                    onMouseEnter={() => setIsShown(true)}
+                    onMouseLeave={() => setIsShown(false)}
+                  >
+                    {hover
+                      ? <img className='fade-in' alt='logo' src={YameruGif} />
+                      : <img className='fade-in' alt='logo' src={Yameru} />}
+                  </LogoContainer>
+
+                  <Title>Yameru <span style={{ color: 'red' }}>·</span> やめる</Title>
+                  <Subtitle hover={hover}>Protect your computer from attacks and theft at public events</Subtitle>
+                  <List>
+                    <li>Protection from Rubber Ducky and other <a href='https://shop.hak5.org/collections/physical-access' target='_blank' rel='noopener noreferrer'>hotplug attacks</a></li>
+                    <li>Alarm when disconnected from power source 🔊</li>
+                    <li>Lockdown when intrusion is detected 🔒</li>
+                    <li>Prevents computer from sleeping 😴</li>
+                  </List>
+                  <ButtonContainer>
+                    {os === 'macOS'
+                      ? <a href='/Download/Yameru.zip'><button className='btn draw-border'>Download for macOS</button></a>
+                      : (
+                        <div>
+                          <p>We currently don't have support for your OS <span role='img'>😥</span></p>
+                        </div>
+                      )}
+                  </ButtonContainer>
+                </Main>
+              </>}
+            </>}
         <Footer>
           <p>with <span style={{ color: 'red' }}>&lt;3</span> from Uppsala</p>
         </Footer>
@@ -187,5 +222,3 @@ function App () {
     </div>
   )
 }
-
-export default App
