@@ -121,18 +121,13 @@ export default function App () {
   return (
     <Router>
       <Switch>
-        <Route path='/privacy'>
-          <Home />
-        </Route>
-        <Route path='*'>
-          <Home />
-        </Route>
+        <Route path='*' render={(props) => <Home {...props} />} />
       </Switch>
     </Router>
   )
 }
 
-function Home () {
+function Home (props) {
   const [hover, setHover] = useState(false)
   const [os, setOS] = useState(false)
   const [modal, setModal] = useState(false)
@@ -146,12 +141,11 @@ function Home () {
   useEffect(() => {
     // Update the document title using the browser API
     setOS(getOS())
-    setPrivacy(getPrivacy())
+    setPrivacy(checkPrivacy())
   }, [setOS])
 
-  const getPrivacy = () => {
-    if (window.location.pathname &&
-      window.location.pathname.includes('privacy')) {
+  const checkPrivacy = () => {
+    if (props.location.search && props.location.search.includes('privacy')) {
       return true
     } else {
       return false
@@ -181,6 +175,13 @@ function Home () {
                       <Link
                         onClick={() => setIsModal(true)}
                       >screenshots
+                      </Link>
+                    </LinkContainer>
+                    <LinkContainer>
+                      <Link
+                        onClick={() => setPrivacy(true)}
+                      >
+                        Privacy Policy
                       </Link>
                     </LinkContainer>
                   </LinkWrap>
