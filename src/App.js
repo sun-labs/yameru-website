@@ -206,7 +206,7 @@ function Home (props) {
                   </List>
                   <ButtonContainer>
                     {os === 'macOS'
-                      ? <a href='/Download/Yameru.zip'><button className='btn draw-border'>Download for macOS</button></a>
+                      ? <a href='https://apps.apple.com/se/app/yameru/id1511487314' target='_blank' rel='noopener noreferrer'><button className='btn draw-border'>Download for macOS</button></a>
                       : (
                         <div>
                           <p>We currently don't have support for your OS <span role='img'>😥</span></p>
