@@ -15,12 +15,22 @@ const Body = styled.div`
   display:flex;
   flex-direction:column;
   min-height: 100vh;
+  & a {
+      color: black;
+      cursor: pointer;
+      &:hover{
+        color: red;
+      }
+    }
   &.crazy{
     background-color: #43BBE1;
     transition: background-color 500ms linear;
     color: white;
     & a {
       color: red;
+      &:hover{
+        color: black;
+      }
     }
   }
 `
@@ -214,8 +224,8 @@ function Home (props) {
                       )}
                   </ButtonContainer>
                 </Main>
-              </>}
-            </>}
+                </>}
+          </>}
         <Footer>
           <p>with <span style={{ color: 'red' }}>&lt;3</span> from Uppsala</p>
         </Footer>
