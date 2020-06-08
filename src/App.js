@@ -137,7 +137,7 @@ function App () {
                 <LinkWrap>
                   <LinkContainer>
                     <Link
-                      href='https://github.com/sun-labs/sun-Yameru'
+                      href='https://github.com/search?q=org:sun-labs%20topic:yameru'
                       target='_blank'
                       rel='noopener noreferrer'
                     >source code
