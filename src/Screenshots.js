@@ -21,6 +21,7 @@ const Header = styled.div`
 const Icon = styled.img`
   padding: 1em;
   max-width: 75px;
+  max-height: 75px;
 `
 
 const LinkWrap = styled.div`
