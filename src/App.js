@@ -70,6 +70,16 @@ const LogoContainer = styled.div`
   }
 `
 
+const StyledA = styled.a`
+  text-decoration: none;
+  margin: 1rem;
+  display: block;
+  padding: 1rem;
+  &:hover {
+    text-decoration: underline;
+  }
+`
+
 const Footer = styled.div`
   margin-top:auto;
   width: 100%;
@@ -227,7 +237,9 @@ function Home (props) {
               </>}
             </>}
         <Footer>
-          <p>with <span style={{ color: 'red' }}>&lt;3</span> from Uppsala</p>
+          <StyledA href='https://sunlabs.se/?i=yameru' target='_blank' rel='noopener noreferrer'>
+            With <span style={{ color: 'red' }}>{'<3'}</span> from Uppsala
+          </StyledA>
         </Footer>
       </Body>
     </div>
